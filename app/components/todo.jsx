@@ -8,7 +8,7 @@ function Todos() {
 
     useEffect(() => {
         setLoader(true)
-      const getTodos = databases.listDocuments("6481b13459015a21109c", "6481b1775d810b3cdb8e")
+      const getTodos = databases.listDocuments(process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID, process.env.NEXT_PUBLIC_APPWRITE_COLLECTION_ID)
     
       getTodos.then(
         function(response){
@@ -24,7 +24,7 @@ function Todos() {
     const handleDelete = async (e, item) => {
       // console.log('Deleting Todo');
       try {
-        await databases.deleteDocument( "6481b13459015a21109c", "6481b1775d810b3cdb8e", item['$id']);
+        await databases.deleteDocument( process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID, process.env.NEXT_PUBLIC_APPWRITE_COLLECTION_ID, item['$id']);
         window.location.reload()
       } catch (e) {
         alert("You are not authorized to delete TODOS")

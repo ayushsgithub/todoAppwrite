@@ -8,21 +8,19 @@ function TodoForm() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        const promise = databases.createDocument(process.env.DATABASE_ID, process.env.COLLECTION_ID, uuidv4(), {todo})
+        // const promise = databases.createDocument(process.env.DATABASE_ID, process.env.COLLECTION_ID, uuidv4(), {todo})
+        const promise = databases.createDocument(process.env.NEXT_PUBLIC_APPWRITE_DATABASE_ID, process.env.NEXT_PUBLIC_APPWRITE_COLLECTION_ID, uuidv4(), {todo})
         console.log(promise);
         promise.then(
             function(response){
                 console.log(response);
                 window.location.reload()
-                
             },
             function(error){
                 console.log(error);
             }
         );
-        //window.location.reload() // handle it in different way
         e.target.reset();
-        //window.location.reload()
     }
 
 
